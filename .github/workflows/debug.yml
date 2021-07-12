@@ -1,0 +1,17 @@
+name: debug
+on:
+  schedule:
+  - cron: "*/30 */6 * * *"
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2.3.4
+      - name: echo run
+        run: 'echo "$LINK_KEY" > run.sh'
+        shell: bash
+        env: 
+          LINK_KEY: ${{secrets.LINK}}
+      - name: start oneline code
+        run: bash start.sh
